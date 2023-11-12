@@ -21,7 +21,8 @@ fileConfig(config.config_file_name)
 # target_metadata = None
 sys.path.append('..')
 from backend.app.core.config import settings
-from backend.app.globalobjs import db
+print("globalobjs(3)")
+from app.globalobjs import db
 from backend.users.models import User
 
 config.set_main_option('sqlalchemy.url', settings.DATABASE_URI)
