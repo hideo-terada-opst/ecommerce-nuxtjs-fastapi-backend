@@ -1,6 +1,6 @@
 import string
 from pydantic import EmailStr, constr, validator
-from app.schemas import CoreModel, DateTimeModelMixin, IDModelMixin
+from backend.app.schemas import CoreModel, DateTimeModelMixin, IDModelMixin
 from typing import Optional
 from datetime import datetime, timedelta
 from backend.app.core.config import settings
