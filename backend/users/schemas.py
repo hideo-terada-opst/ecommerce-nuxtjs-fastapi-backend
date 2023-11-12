@@ -35,6 +35,9 @@ class UserCreate(CoreModel):
     def username_is_valid(cls, username: str) -> str:
         return validate_username(username)
 
+    class Config:
+        orm_mode = True
+
 
 class UserInDB(DateTimeModelMixin, UserBase):
     """
@@ -43,11 +46,26 @@ class UserInDB(DateTimeModelMixin, UserBase):
     password: constr(min_length=7, max_length=100)
     salt: str
 
+    class Config:
+        orm_mode = True
+
 
 class UserPublic(DateTimeModelMixin, UserBase):
-    pass
+
+    class Config:
+        orm_mode = True
 
 
 # TODO: UserUpdate for profile update can be here
 
 # TODO: UserPasswordUpdate for password update can be here
+
+class UserPasswordUpdate(CoreModel):
+    """
+    Users can change their password
+    """
+    password: constr(min_length=7, max_length=100)
+    salt: str
+
+    class Config:
+        orm_mode = True
