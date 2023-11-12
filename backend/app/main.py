@@ -2,16 +2,14 @@ import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
-from gino.ext.starlette import Gino
 sys.path.append('..')
 from backend.users.api.controller import router as user_router
-from sqlalchemy import MetaData
 
 __all__ = ['app', 'db']
 
-from .globalobjs import app, db
+from app.globalobjs import app, db
 print(f"%% app={app}")
-print(f"%% db={db}")
+print(f"%% db={db, type(db)}")
 
 # app = FastAPI(title=settings.PROJECT_NAME)
 # db: MetaData = Gino(

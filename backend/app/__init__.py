@@ -1,3 +1,3 @@
-from .globalobjs import app, db
+from app.globalobjs import app, db
 
 __all__ = ['app', 'db']

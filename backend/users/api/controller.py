@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from ..schemas import UserCreate, UserInDB, UserPublic, UserLogin, AccessToken
 from backend.users import auth_service
 from backend.app.core.config import settings
@@ -35,3 +35,4 @@ async def user_login(user: UserLogin) -> UserPublic:
         access_token = AccessToken(access_token=token, token_type='bearer')
         print(f"access_token={access_token}")
         return UserPublic(**found_user.dict(), access_token=access_token)
+    raise HTTPException(status_code=401, detail='Incorrect password provided')
