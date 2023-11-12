@@ -15,7 +15,7 @@ psycopg2 = "^2.8.6"
 chardet = "^5.2.0"
 six = "^1.16.0"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-pydantic = {extras = ["dotenv"], version = "^1.8.2"}
+pydantic = {extras = ["email", "dotenv"], version = "^1.8.2"}
 python-jose = {extras = ["cryptography"], version = "^3.2.0"}
 
 [tool.poetry.dev-dependencies]

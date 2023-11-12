@@ -25,6 +25,7 @@ async def user_create(user: UserCreate) -> UserInDB:
     response_model=UserPublic
 )
 async def user_login(user: UserLogin) -> UserPublic:
+    print(f"@user_login(username={user.username})")
     from ..crud import get_user_by_username
 
     found_user = await get_user_by_username(user_name=user.username)
@@ -32,4 +33,5 @@ async def user_login(user: UserLogin) -> UserPublic:
         # If the provided password is valid one then we are going to create an access token
         token = auth_service.create_access_token_for_user(user=found_user)
         access_token = AccessToken(access_token=token, token_type='bearer')
+        print(f"access_token={access_token}")
         return UserPublic(**found_user.dict(), access_token=access_token)
