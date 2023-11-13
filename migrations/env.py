@@ -19,11 +19,10 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-sys.path.append('..')
-from backend.app.core.config import settings
-print("globalobjs(3)")
-from app.globalobjs import db
+from backend import settings
+from backend import db
 from backend.users.models import User
+from backend.product.models import Category, Product
 
 config.set_main_option('sqlalchemy.url', settings.DATABASE_URI)
 target_metadata = db

@@ -8,7 +8,7 @@ from backend.users.api.controller import router as user_router
 __all__ = ['app', 'db']
 
 print("globalobjs(2)")
-from app.globalobjs import app, db
+from backend.app.globalobjs import app, db
 print(f"%% app={app}")
 print(f"%% db={db, type(db)}")
 
