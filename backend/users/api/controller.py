@@ -1,7 +1,6 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from ..schemas import UserCreate, UserInDB, UserPublic, UserLogin, AccessToken
-from backend.users import auth_service
-from backend.app.core.config import settings
+from backend.users import auth_service, get_current_active_user
 
 router = APIRouter()
 
@@ -33,6 +32,16 @@ async def user_login(user: UserLogin) -> UserPublic:
         # If the provided password is valid one then we are going to create an access token
         token = auth_service.create_access_token_for_user(user=found_user)
         access_token = AccessToken(access_token=token, token_type='bearer')
-        print(f"access_token={access_token}")
+        print(f"access_token={token}")
         return UserPublic(**found_user.dict(), access_token=access_token)
     raise HTTPException(status_code=401, detail='Incorrect password provided')
+
+
+@router.get(
+    "/me",
+    tags=["get current logged in user"],
+    description="Get current logged in user",
+    response_model=UserPublic,
+)
+async def get_me(current_user: UserInDB = Depends(get_current_active_user)) -> UserInDB:
+    return current_user

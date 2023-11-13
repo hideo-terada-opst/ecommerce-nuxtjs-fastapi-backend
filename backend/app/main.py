@@ -2,6 +2,11 @@ import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
+from gino.ext.starlette import Gino
+from backend.users.api.controller import router as user_router
+from backend.product.api.controller import router as product_router
+from sqlalchemy import MetaData
+
 sys.path.append('..')
 from backend.users.api.controller import router as user_router
 
@@ -42,3 +47,4 @@ app.add_middleware(
     )
 
 app.include_router(user_router, prefix='/users')
+app.include_router(product_router, prefix='/product')
