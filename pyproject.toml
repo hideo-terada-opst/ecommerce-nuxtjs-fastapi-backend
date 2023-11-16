@@ -20,6 +20,7 @@ python-jose = {extras = ["cryptography"], version = "^3.2.0"}
 gino-admin = "^0.2.5"
 python-multipart = "^0.0.5"
 websockets = "10.0"
+Pillow = "^8.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
